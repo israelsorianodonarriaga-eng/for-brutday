@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>| Invitación de Cumpleaños</title>
+    
+    <!-- Fuentes: JetBrains Mono y Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    
+    <!-- Iconos: Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <!-- Estilos locales -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Cursor Personalizado -->
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-dot"></div>
+
+    <!-- Fondo Animado -->
+    <div id="particles-js"></div>
+
+    <!-- Pantalla Inicial (Secuencia de Arranque) -->
+    <div id="boot-screen">
+        <div class="terminal">
+            <div class="terminal-header">
+                <span class="btn red"></span>
+                <span class="btn yellow"></span>
+                <span class="btn green"></span>
+                <span class="title">root@servidor:~</span>
+            </div>
+            <div class="terminal-body" id="terminal-text"></div>
+        </div>
+    </div>
+
+    <!-- Contenido Principal -->
+    <main id="app" class="hidden">
+        
+        <!-- Botón de Música Flotante -->
+        <button id="music-toggle" class="floating-btn">
+            <i class="fas fa-music"></i>
+        </button>
+        <!-- Audio placeholder -->
+        <audio id="bg-music" loop>
+            <source src="https://assets.codepen.io/296057/fem-bgm.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- Sección Principal (Hero) -->
+        <section id="hero" class="gsap-reveal">
+            <div class="glitch-wrapper">
+                <h1 class="glitch" data-text="Cumpleaños🤫🤫">Cumpleaños🤫🤫</h1>
+            </div>
+            <h2 class="version-text">Versión <span data-config="version"></span> Lanzada</h2>
+            <p class="subtitle">Despliegue Exitoso</p>
+            <div class="hero-message">
+                <p>🎂 Estás invitado al cumpleaños sorpresa de</p>
+                <h3 class="name-highlight" data-config="name"></h3>
+            </div>
+        </section>
+
+        <!-- Sección de Cuenta Regresiva -->
+        <section id="countdown-section" class="gsap-reveal">
+            <div class="countdown-container">
+                <div class="time-box"><span id="days">00</span><p>Días</p></div>
+                <div class="time-box"><span id="hours">00</span><p>Horas</p></div>
+                <div class="time-box"><span id="minutes">00</span><p>Min</p></div>
+                <div class="time-box"><span id="seconds">00</span><p>Seg</p></div>
+            </div>
+        </section>
+
+        <!-- Cuadrícula de Información -->
+        <section id="info" class="gsap-reveal">
+            <div class="grid-container">
+                <div class="card glass">
+                    <i class="fas fa-calendar-alt icon-cyan"></i>
+                    <h4>Fecha</h4>
+                    <p data-config="displayDate"></p>
+                </div>
+                <div class="card glass">
+                    <i class="fas fa-clock icon-green"></i>
+                    <h4>Hora</h4>
+                    <p data-config="time"></p>
+                </div>
+                <div class="card glass map-card" id="map-btn">
+                    <i class="fas fa-map-marker-alt icon-purple"></i>
+                    <h4>Lugar</h4>
+                    <p data-config="location"></p>
+                    <span class="card-action">Ver en Maps <i class="fas fa-external-link-alt"></i></span>
+                </div>
+                <div class="card glass">
+                    <i class="fas fa-user-secret icon-cyan"></i>
+                    <h4>Código de Vestimenta</h4>
+                    <p data-config="dressCode"></p>
+                </div>
+                <div class="card glass">
+                    <i class="fas fa-pizza-slice icon-green"></i>
+                    <h4>Comida</h4>
+                    <p data-config="food"></p>
+                </div>
+                <div class="card glass">
+                    <i class="fas fa-beer icon-purple"></i>
+                    <h4>Bebidas</h4>
+                    <p data-config="drinks"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Línea de Tiempo -->
+        <section id="timeline" class="gsap-reveal">
+            <h3 class="section-title">Ejecución del Programa</h3>
+            <div class="timeline-container">
+                <div class="timeline-item"><div class="dot"></div><div class="content"><span class="time">18:00</span> <span>Arranque del Sistema (Bienvenida)</span></div></div>
+                <div class="timeline-item"><div class="dot"></div><div class="content"><span class="time">19:00</span> <span>Transferencia de Datos (Cena)</span></div></div>
+                <div class="timeline-item"><div class="dot"></div><div class="content"><span class="time">20:00</span> <span>Modo Multijugador (Juegos)</span></div></div>
+                <div class="timeline-item"><div class="dot"></div><div class="content"><span class="time">21:00</span> <span>Desbordamiento de Búfer (Pastel)</span></div></div>
+                <div class="timeline-item"><div class="dot"></div><div class="content"><span class="time">22:00</span> <span>Renderizado de Audio (Música)</span></div></div>
+                <div class="timeline-item"><div class="dot"></div><div class="content"><span class="time">23:00</span> <span>Bucle Infinito (Fiesta)</span></div></div>
+            </div>
+        </section>
+
+
+        <!-- Botón de Confirmación -->
+        <section id="confirm" class="gsap-reveal">
+            <button id="commit-btn" class="glow-btn large">
+                <i class="fab fa-git-alt"></i> git commit -m "Confirmo mi asistencia"
+            </button>
+        </section>
+
+        <!-- Pie de página -->
+        <footer>
+            <p>🤫🤫Es sorpresa....🤫🤫<span data-config="version"></span></p>
+            <div class="glow-line"></div>
+        </footer>
+    </main>
+
+    <!-- Scripts CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
+    
+    <!-- Script local -->
+    <script src="script.js"></script>
+</body>
+</html>
