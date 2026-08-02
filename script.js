@@ -3,7 +3,7 @@
    Modifica estos valores para personalizar la invitación.
 ========================================================================= */
 const CONFIG = {
-    name: "Marco Rziel",                   // Nombre del festejado
+    name: "Marco Raziel",                   // Nombre del festejado
     version: "30.0",                    // Edad o Versión
     date: "2026-09-19T20:00:00",        // Fecha del evento (ISO)
     displayDate: "19 Septiembre 2026",   // Fecha a mostrar en UI
@@ -11,10 +11,9 @@ const CONFIG = {
    location: "Gral. Abelardo Rodríguez", // Texto de ubicación
     mapsUrl: "https://maps.app.goo.gl/PwHiCsQFpyymqFBp9",  // Búsqueda para la URL de Maps
     whatsappNum: "527223957638",        // Tu número con código de país (sin +)
-    whatsappMsg: "Hola. Confirmo mi asistencia a la actualización v30.0 (Cumpleaños). Nos vemos pronto.",
-    dressCode: "Cyberpunk / Oscuro / Geeks Casual",
-    food: "Pizzas, Hamburguesas & Snacks",
-    drinks: "Cerveza de Raíz, Cócteles Neón y Refrescos"
+    whatsappMsg: "Hola. Confirmo mi asistencia a la fiesta de Maco. Nos vemos pronto.",
+    giftText: "No te estreses con el regalo, si gustas puedes hacer un depósito al cumpleañero:",
+    clabe: "638180010120572570" // Reemplaza con la cuenta real
 };
 
 /* =========================================================================
@@ -323,3 +322,23 @@ window.onload = () => {
     // Iniciar escritura rápida de terminal
     typeTerminal();
 };
+
+// Botón de Copiar CLABE
+document.getElementById('copy-btn').addEventListener('click', () => {
+    navigator.clipboard.writeText(CONFIG.clabe).then(() => {
+        // Alerta tipo Toast (pequeña y elegante en la esquina)
+        Swal.fire({
+            title: '¡Copiado!',
+            text: 'Cuenta guardada en el portapapeles',
+            icon: 'success',
+            toast: true,
+            position: 'bottom-end',
+            showConfirmButton: false,
+            timer: 2500,
+            background: '#0a0e27',
+            color: '#00FF9C'
+        });
+    }).catch(err => {
+        console.error('Error al copiar: ', err);
+    });
+});
