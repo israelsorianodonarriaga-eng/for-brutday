@@ -536,24 +536,38 @@ footer {
 }
 
 /* --- SECCIÓN REGALO --- */
-.clabe-container {
+.copy-field {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 15px;
+    justify-content: space-between;
     background: rgba(0, 0, 0, 0.4);
-    padding: 10px;
+    padding: 10px 15px;
     border-radius: 6px;
     border: 1px solid var(--glass-border);
-    margin-top: 10px;
+    margin-bottom: 12px;
+    text-align: left;
 }
-#clabe-text {
+
+.copy-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.copy-info small {
+    font-size: 0.75rem;
+    color: #8892b0;
+    margin-bottom: 4px;
+    font-family: var(--font-sans);
+}
+
+.copy-info span {
     font-family: var(--font-mono);
     color: var(--green);
-    font-size: 1.1rem;
+    font-size: 1rem;
     letter-spacing: 1px;
 }
-#copy-btn {
+
+.copy-action {
     background: transparent;
     border: none;
     color: var(--cyan);
@@ -561,7 +575,72 @@ footer {
     transition: color 0.3s, transform 0.2s;
     padding: 5px;
 }
-#copy-btn:hover {
+
+.copy-action:hover {
     color: var(--white);
     transform: scale(1.1);
+}
+
+/* --- SECCIÓN DE LLEGADA Y 3D --- */
+.arrival-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: -30px;
+    margin-bottom: 50px;
+    box-shadow: inset 0 0 15px rgba(138, 43, 226, 0.05);
+}
+
+.arrival-content {
+    flex: 1;
+    text-align: left;
+}
+
+.arrival-title {
+    font-family: var(--font-mono);
+    color: var(--white);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.arrival-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: #e2e8f0;
+}
+
+#arrival-3d-container {
+    width: 250px;
+    height: 250px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 245, 255, 0.05) 0%, transparent 70%);
+}
+
+/* Responsivo para móviles: apilar texto y 3D */
+@media (max-width: 768px) {
+    .arrival-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .arrival-content {
+        text-align: center;
+    }
+
+    #arrival-3d-container {
+        width: 100%;
+        height: 200px;
+    }
 }

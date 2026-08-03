@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>| Invitación de Cumpleaños</title>
-<link rel="icon" type="image/x-icon" href="assets/tig2.png">
+  <title>Invitación de Cumpleaños</title>
+  <link rel="icon" type="image/x-icon" href="assets/tig2.png">
 
-<!-- Fuentes: JetBrains Mono y Space Grotesk -->
+  <!-- Fuentes: JetBrains Mono y Space Grotesk -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -19,6 +19,9 @@
 
   <!-- SweetAlert2 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css" rel="stylesheet" />
+
+  <!-- Three.js (Librería 3D) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <!-- Estilos locales -->
   <link rel="stylesheet" href="style.css" />
@@ -32,14 +35,14 @@
   <!-- Fondo Animado -->
   <div id="particles-js"></div>
 
-  <!-- Pantalla Inicial (Secuencia de Arranque) -->
+  <!-- Pantalla Inicial (Carga Amigable) -->
   <div id="boot-screen">
     <div class="terminal">
       <div class="terminal-header">
         <span class="btn red"></span>
         <span class="btn yellow"></span>
         <span class="btn green"></span>
-        <span class="title">root@servidor:~</span>
+        <span class="title">cargando_invitacion...</span>
       </div>
       <div class="terminal-body" id="terminal-text"></div>
     </div>
@@ -59,18 +62,35 @@
     <!-- Sección Principal (Hero) -->
     <section id="hero" class="gsap-reveal">
       <div class="glitch-wrapper">
-        <h1 class="glitch" data-text="Cumpleaños Sorpresa🤫🤫">Cumpleaños Sorpresa🤫🤫</h1>
+        <h1 class="glitch" data-text="Cumpleaños Sorpresa 🤫">Cumpleaños Sorpresa 🤫</h1>
       </div>
       <h2 class="version-text">
-        No. <span data-config="version"></span> Lanzada
+        Celebrando los <span data-config="version"></span> años
       </h2>
-      <p class="subtitle">Despliegue Exitoso</p>
+      <p class="subtitle">Una fecha muy especial</p>
       <div class="hero-message">
-        <p>🎂 Estás invitado al cumpleaños sorpresa de</p>
+        <p>🎂 Estás cordialmente invitado al cumpleaños sorpresa de</p>
         <h3 class="name-highlight" data-config="name"></h3>
       </div>
     </section>
 
+    <!-- Sección de Recepción con Elemento 3D -->
+    <section id="arrival" class="gsap-reveal">
+      <div class="arrival-card glass">
+        <div class="arrival-content">
+          <i class="fas fa-glass-cheers icon-purple" style="font-size: 2.5rem; margin-bottom: 15px;"></i>
+          <h3 class="arrival-title">Horario de Recepción</h3>
+          <p class="arrival-text">
+            No tenemos un itinerario estricto, pero las puertas estarán abiertas para recibirte a partir de las <strong style="color: var(--cyan);">16:00 HRS (4:00 PM)</strong>.
+          </p>
+          <p class="subtitle" style="font-size: 0.85rem;">Llega a la hora que gustes, ¡te esperamos con mucho gusto!</p>
+        </div>
+        
+        <!-- Contenedor para el Render 3D -->
+        <div id="arrival-3d-container"></div>
+      </div>
+    </section>
+    
     <!-- Sección de Cuenta Regresiva -->
     <section id="countdown-section" class="gsap-reveal">
       <div class="countdown-container">
@@ -103,26 +123,38 @@
         </div>
         <div class="card glass">
           <i class="fas fa-clock icon-green"></i>
-          <h4>Hora</h4>
+          <h4>Hora Principal</h4>
           <p data-config="time"></p>
         </div>
         <div class="card glass map-card" id="map-btn">
           <i class="fas fa-map-marker-alt icon-purple"></i>
-          <h4>Lugar</h4>
-          <p data-config="location"></p>
+          <h4>Ubicación</h4>
+          <p data-config="location">Ver dirección</p>
           <span class="card-action">Ver en Maps <i class="fas fa-external-link-alt"></i></span>
         </div>
+        
         <div class="card glass" id="gift-card">
           <i class="fas fa-gift icon-cyan"></i>
-          <h4>Gift para el cumpleañero</h4>
+          <h4>Obsequio / Detalle</h4>
           <p data-config="giftText" style="font-size: 0.95rem; margin-bottom: 15px; color: #8892b0;"></p>
 
-          <div class="clabe-container">
-            <span id="clabe-text" data-config="clabe"></span>
-            <button id="copy-btn" title="Copiar CLABE"><i class="fas fa-copy"></i></button>
+          <!-- Campo Copiable: Nombre -->
+          <div class="copy-field">
+            <div class="copy-info">
+              <small>Beneficiario:</small>
+              <span id="name-text" data-config="beneficiario"></span>
+            </div>
+            <button id="copy-name-btn" class="copy-action" title="Copiar Nombre"><i class="fas fa-copy"></i></button>
           </div>
-          <h4>Entidad:  NU</h4>
 
+          <!-- Campo Copiable: CLABE -->
+          <div class="copy-field">
+            <div class="copy-info">
+              <small>CLABE (NU):</small>
+              <span id="clabe-text" data-config="clabe"></span>
+            </div>
+            <button id="copy-clabe-btn" class="copy-action" title="Copiar CLABE"><i class="fas fa-copy"></i></button>
+          </div>
         </div>
       </div>
     </section>
@@ -137,14 +169,14 @@
               opacity: 0.8;
               font-family: var(--font-mono);
             ">
-          <i class="fab fa-git-alt"></i> Te esperamos
+          <i class="fab fa-git-alt"></i> Ejecutando Commit...
         </span>
       </button>
     </section>
 
     <!-- Pie de página -->
     <footer>
-      <p>🤫🤫Es sorpresa....🤫🤫<span data-config="version"></span></p>
+      <p>🤫 ¡Es una gran sorpresa! No digas nada 🤫</p>
       <div class="glow-line"></div>
     </footer>
   </main>

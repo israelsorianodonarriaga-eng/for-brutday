@@ -11,7 +11,8 @@ const CONFIG = {
    location: "Gral. Abelardo Rodríguez", // Texto de ubicación
     mapsUrl: "https://maps.app.goo.gl/PwHiCsQFpyymqFBp9",  // Búsqueda para la URL de Maps
     whatsappNum: "527223957638",        // Tu número con código de país (sin +)
-    whatsappMsg: "Hola. Confirmo mi asistencia a la fiesta de Maco. Nos vemos pronto.",
+    beneficiario: "Marco Raziel Bartolo Medina", // <--- NUEVA LÍNEA AQUÍ
+    whatsappMsg: "Hola. Confirmo mi asistencia a la fiesta de Marco. Nos vemos pronto.",
     giftText: "No te estreses con el regalo, si gustas puedes hacer un depósito al cumpleañero:",
     clabe: "638180010120572570" // Reemplaza con la cuenta real
 };
@@ -35,7 +36,6 @@ const cursor = document.querySelector('.custom-cursor');
 const cursorDot = document.querySelector('.custom-cursor-dot');
 
 document.addEventListener('mousemove', (e) => {
-    // Usamos requestAnimationFrame para mayor fluidez
     requestAnimationFrame(() => {
         cursor.style.left = `${e.clientX}px`;
         cursor.style.top = `${e.clientY}px`;
@@ -44,23 +44,20 @@ document.addEventListener('mousemove', (e) => {
     });
 });
 
-// Efecto hover sobre botones y enlaces
-document.querySelectorAll('button, .card, .gallery-item').forEach(el => {
+document.querySelectorAll('button, .card').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
 });
 
 /* =========================================================================
-   3. SECUENCIA DE ARRANQUE (TERMINAL) - 2 SEGUNDOS EXACTOS
+   3. SECUENCIA DE ARRANQUE (CARGA AMIGABLE)
 ========================================================================= */
 const bootSequence = [
-    `> iniciando cumple_v${CONFIG.version}.exe`,
-    "> Cargando módulos principales... [OK]",
-    "> Compilando recuerdos... [OK]",
-    "> Estableciendo conexión segura... [OK]",
-    "> Inicializando protocolos de fiesta...",
-    "> Cargando pastel.js... [ÉXITO]",
-    "> Obteniendo lista de amigos... [LISTO]"
+    `> Preparando la gran sorpresa...`,
+    "> Cargando los mejores recuerdos... [OK]",
+    "> Sintonizando buena música... [OK]",
+    "> Preparando la celebración... [OK]",
+    "> ¡Todo listo para festejar juntos!"
 ];
 
 const terminalText = document.getElementById('terminal-text');
@@ -68,12 +65,11 @@ const bootScreen = document.getElementById('boot-screen');
 const app = document.getElementById('app');
 
 async function typeTerminal() {
-    // Escribimos el texto rápidamente para que encaje en el tiempo
     for (let i = 0; i < bootSequence.length; i++) {
         const line = document.createElement('div');
         terminalText.appendChild(line);
         await typeLine(line, bootSequence[i]);
-        await delay(50); // Pausa súper corta entre líneas
+        await delay(40);
     }
 }
 
@@ -87,13 +83,12 @@ function typeLine(element, text) {
                 clearInterval(interval);
                 resolve();
             }
-        }, 5); // Velocidad de tipeo muy rápida
+        }, 5);
     });
 }
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
-// Control estricto de tiempo: Ocultar la pantalla a los 2 segundos exactos
 setTimeout(() => {
     gsap.to(bootScreen, {
         opacity: 0,
@@ -110,7 +105,6 @@ setTimeout(() => {
    4. INICIO DE LA EXPERIENCIA (PARTÍCULAS Y ANIMACIONES)
 ========================================================================= */
 function initExperience() {
-    // Iniciar Particles.js (Estilo Nodos Cibernéticos)
     particlesJS('particles-js', {
         "particles": {
             "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
@@ -127,18 +121,12 @@ function initExperience() {
                 "onhover": { "enable": true, "mode": "grab" },
                 "onclick": { "enable": true, "mode": "push" },
                 "resize": true
-            },
-            "modes": {
-                "grab": { "distance": 140, "line_linked": { "opacity": 0.8 } },
-                "push": { "particles_nb": 4 }
             }
         },
         "retina_detect": true
     });
 
-    // Animar elementos al entrar usando GSAP e Intersection Observer
     const sections = document.querySelectorAll('.gsap-reveal');
-    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -154,6 +142,7 @@ function initExperience() {
     }, { threshold: 0.1 });
 
     sections.forEach(section => observer.observe(section));
+    init3DPlane();
 }
 
 /* =========================================================================
@@ -167,7 +156,7 @@ const interval = setInterval(() => {
 
     if (distance < 0) {
         clearInterval(interval);
-        document.querySelector('.countdown-container').innerHTML = "<h3 style='color: var(--cyan); font-family: var(--font-mono);'>SISTEMA DESPLEGADO (¡Es hoy!)</h3>";
+        document.querySelector('.countdown-container').innerHTML = "<h3 style='color: var(--cyan); font-family: var(--font-mono);'>¡Llegó el gran día!</h3>";
         return;
     }
 
@@ -180,30 +169,24 @@ const interval = setInterval(() => {
 /* =========================================================================
    6. INTERACCIONES (MAPS, WHATSAPP, MÚSICA)
 ========================================================================= */
-
-// Botón de Google Maps
 document.getElementById('map-btn').addEventListener('click', () => {
     window.open(CONFIG.mapsUrl, '_blank');
 });
 
-// Botón de Confirmación (WhatsApp)
 document.getElementById('commit-btn').addEventListener('click', function() {
     const btn = this;
     const originalText = btn.innerHTML;
     
-    // Cambiar estado del botón
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Ejecutando Commit...';
     btn.style.pointerEvents = 'none';
 
     setTimeout(() => {
-        // Restaurar botón
         btn.innerHTML = originalText;
         btn.style.pointerEvents = 'auto';
 
-        // Alerta de éxito elegante
         Swal.fire({
-            title: '¡Commit Exitoso!',
-            text: 'Redirigiendo a entorno seguro (WhatsApp)...',
+            title: '¡Asistencia Confirmada!',
+            text: 'Te estamos redirigiendo a WhatsApp...',
             icon: 'success',
             background: '#0a0e27',
             color: '#00FF9C',
@@ -217,7 +200,6 @@ document.getElementById('commit-btn').addEventListener('click', function() {
     }, 1500);
 });
 
-// Control de Música
 const musicBtn = document.getElementById('music-toggle');
 const bgMusic = document.getElementById('bg-music');
 let isPlaying = false;
@@ -248,17 +230,14 @@ let konamiBuffer = '';
 
 document.addEventListener('keydown', (e) => {
     const key = e.key;
-    
-    // Lógica para palabras secretas
-    if (key.length === 1) { // Solo letras
+    if (key.length === 1) {
         keyBuffer += key.toLowerCase();
-        // Limitar tamaño del buffer para no gastar memoria
         if (keyBuffer.length > 20) keyBuffer = keyBuffer.slice(-20);
         
         if (keyBuffer.includes('sudoparty')) {
-            keyBuffer = ''; // reiniciar
+            keyBuffer = '';
             Swal.fire({
-                title: 'Acceso Concedido',
+                title: '¡Acceso Concedido!',
                 text: 'Has desbloqueado permisos de Administrador para la barra libre.',
                 icon: 'success',
                 background: '#0a0e27',
@@ -266,32 +245,8 @@ document.addEventListener('keydown', (e) => {
                 confirmButtonColor: '#00FF9C'
             });
         }
-        
-        if (keyBuffer.includes('help')) {
-            keyBuffer = ''; // reiniciar
-            Swal.fire({
-                title: 'Comandos de Terminal',
-                html: '<ul><li style="text-align:left; color:#00FF9C">sudo party - Acceso Root</li><li style="text-align:left; color:#00F5FF">cake - Desplegar pastel virtual</li><li style="text-align:left; color:#8A2BE2">Código Konami - Desbloquea lógica secreta</li></ul>',
-                background: '#0a0e27',
-                color: '#fff',
-                confirmButtonColor: '#8A2BE2'
-            });
-        }
-        
-        if (keyBuffer.includes('cake')) {
-            keyBuffer = ''; // reiniciar
-            Swal.fire({
-                title: 'Desplegando Pastel...',
-                text: '🎂 🍰 🧁',
-                background: '#0a0e27',
-                color: '#00FF9C',
-                showConfirmButton: false,
-                timer: 2000
-            });
-        }
     }
 
-    // Lógica para el Código Konami
     konamiBuffer += key;
     if (konamiBuffer.length > konamiCode.length) {
         konamiBuffer = konamiBuffer.slice(-konamiCode.length);
@@ -299,12 +254,10 @@ document.addEventListener('keydown', (e) => {
     
     if (konamiBuffer === konamiCode) {
         konamiBuffer = '';
-        document.body.style.filter = 'hue-rotate(90deg)'; // Efecto psicodélico suave
+        document.body.style.filter = 'hue-rotate(90deg)';
         Swal.fire({
-            title: 'MODO DIOS ACTIVADO',
-            text: '+30 Vidas extra añadidas a la base de datos.',
-            imageUrl: 'https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif', // GIF Gamer
-            imageWidth: 200,
+            title: '¡MODO FIESTA ACTIVADO!',
+            text: '+30 Vidas extra añadidas a la diversión.',
             background: '#0a0e27',
             color: '#FF00FF',
             confirmButtonColor: '#FF00FF'
@@ -312,33 +265,85 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-/* =========================================================================
-   INICIAR SCRIPT AL CARGAR
-========================================================================= */
 window.onload = () => {
     initConfigData();
-    // Prevenir el scroll durante la pantalla de inicio
     window.scrollTo(0, 0);
-    // Iniciar escritura rápida de terminal
     typeTerminal();
 };
 
-// Botón de Copiar CLABE
-document.getElementById('copy-btn').addEventListener('click', () => {
-    navigator.clipboard.writeText(CONFIG.clabe).then(() => {
-        // Alerta tipo Toast (pequeña y elegante en la esquina)
-        Swal.fire({
-            title: '¡Copiado!',
-            text: 'Cuenta guardada en el portapapeles',
-            icon: 'success',
-            toast: true,
-            position: 'bottom-end',
-            showConfirmButton: false,
-            timer: 2500,
-            background: '#0a0e27',
-            color: '#00FF9C'
+/* =========================================================================
+   FUNCIÓN PARA COPIAR DATOS
+========================================================================= */
+function setupCopyButton(btnId, textId, successMsg) {
+    document.getElementById(btnId).addEventListener('click', () => {
+        const textToCopy = document.getElementById(textId).innerText;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            Swal.fire({
+                title: '¡Copiado!',
+                text: successMsg,
+                icon: 'success',
+                toast: true,
+                position: 'bottom-end',
+                showConfirmButton: false,
+                timer: 2500,
+                background: '#0a0e27',
+                color: '#00FF9C'
+            });
+        }).catch(err => {
+            console.error('Error al copiar: ', err);
         });
-    }).catch(err => {
-        console.error('Error al copiar: ', err);
     });
-});
+}
+
+setupCopyButton('copy-name-btn', 'name-text', 'Nombre guardado en el portapapeles');
+setupCopyButton('copy-clabe-btn', 'clabe-text', 'Cuenta guardada en el portapapeles');
+
+/* =========================================================================
+   ANIMACIÓN 3D (THREE.JS)
+========================================================================= */
+function init3DPlane() {
+    const container = document.getElementById('arrival-3d-container');
+    if (!container) return;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 1000);
+    
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    container.appendChild(renderer.domElement);
+
+    const geometry = new THREE.ConeGeometry(4, 12, 3);
+    const material = new THREE.MeshBasicMaterial({ 
+        color: 0x00FF9C,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.9
+    });
+
+    const plane = new THREE.Mesh(geometry, material);
+    plane.rotation.x = Math.PI / 2.2;
+    plane.rotation.z = -Math.PI / 6;
+    scene.add(plane);
+
+    camera.position.z = 25;
+    let time = 0;
+
+    function animate() {
+        requestAnimationFrame(animate);
+        time += 0.03;
+        plane.position.y = Math.sin(time) * 1.5;
+        plane.rotation.y = Math.sin(time * 0.5) * 0.3;
+        renderer.render(scene, camera);
+    }
+    
+    animate();
+
+    window.addEventListener('resize', () => {
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    });
+}
