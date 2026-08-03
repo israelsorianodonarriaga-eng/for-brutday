@@ -126,13 +126,17 @@
           <h4>Hora Principal</h4>
           <p data-config="time"></p>
         </div>
-        <div class="card glass map-card" id="map-btn">
-          <i class="fas fa-map-marker-alt icon-purple"></i>
+<!-- Tarjeta de Ubicación Actualizada -->
+        <div class="card glass map-card" id="map-btn" title="Abrir en Google Maps" style="cursor: pointer;">
+          <i class="fas fa-map-marked-alt icon-purple" style="font-size: 2rem; margin-bottom: 10px;"></i>
           <h4>Ubicación</h4>
-          <p data-config="location">Ver dirección</p>
-          <span class="card-action">Ver en Maps <i class="fas fa-external-link-alt"></i></span>
+          <p data-config="location" style="margin-bottom: 15px;">Ver dirección</p>
+          
+          <!-- Nuevo botón/indicador visual explícito -->
+          <div class="explicit-map-btn">
+            <i class="fas fa-location-arrow pulse-icon"></i> ¡Clic aquí para abrir Maps!
+          </div>
         </div>
-        
         <div class="card glass" id="gift-card">
           <i class="fas fa-gift icon-cyan"></i>
           <h4>Obsequio / Detalle</h4>
@@ -176,7 +180,7 @@
 
     <!-- Pie de página -->
     <footer>
-      <p>🤫 ¡Es una gran sorpresa! No digas nada 🤫</p>
+      <p>🤫 ¡Es una gran sorpresa! Te esperamos 🤫</p>
       <div class="glow-line"></div>
     </footer>
   </main>

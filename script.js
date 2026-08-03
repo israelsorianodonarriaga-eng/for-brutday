@@ -8,7 +8,7 @@ const CONFIG = {
     date: "2026-09-19T20:00:00",        // Fecha del evento (ISO)
     displayDate: "19 Septiembre 2026",   // Fecha a mostrar en UI
     time: "19:00 HRS",
-   location: "Gral. Abelardo Rodríguez", // Texto de ubicación
+   location: "Gral. Abelardo Rodríguez 301 Interior D", // Texto de ubicación
     mapsUrl: "https://maps.app.goo.gl/PwHiCsQFpyymqFBp9",  // Búsqueda para la URL de Maps
     whatsappNum: "527223957638",        // Tu número con código de país (sin +)
     beneficiario: "Marco Raziel Bartolo Medina", // <--- NUEVA LÍNEA AQUÍ
