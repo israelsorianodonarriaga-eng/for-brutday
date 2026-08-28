@@ -81,16 +81,17 @@
           <i class="fas fa-glass-cheers icon-purple" style="font-size: 2.5rem; margin-bottom: 15px;"></i>
           <h3 class="arrival-title">Horario de Recepción</h3>
           <p class="arrival-text">
-            No tenemos un itinerario estricto, pero las puertas estarán abiertas para recibirte a partir de las <strong style="color: var(--cyan);">16:00 HRS (4:00 PM)</strong>.
+            No tenemos un itinerario estricto, pero las puertas estarán abiertas para recibirte a partir de las <strong
+              style="color: var(--cyan);">16:00 HRS (4:00 PM)</strong>.
           </p>
           <p class="subtitle" style="font-size: 0.85rem;">Llega a la hora que gustes, ¡te esperamos con mucho gusto!</p>
         </div>
-        
+
         <!-- Contenedor para el Render 3D -->
         <div id="arrival-3d-container"></div>
       </div>
     </section>
-    
+
     <!-- Sección de Cuenta Regresiva -->
     <section id="countdown-section" class="gsap-reveal">
       <div class="countdown-container">
@@ -126,16 +127,26 @@
           <h4>Hora Principal</h4>
           <p data-config="time"></p>
         </div>
-<!-- Tarjeta de Ubicación Actualizada -->
+        <!-- Tarjeta de Ubicación Actualizada -->
         <div class="card glass map-card" id="map-btn" title="Abrir en Google Maps" style="cursor: pointer;">
           <i class="fas fa-map-marked-alt icon-purple" style="font-size: 2rem; margin-bottom: 10px;"></i>
           <h4>Ubicación</h4>
           <p data-config="location" style="margin-bottom: 15px;">Ver dirección</p>
-          
+
           <!-- Nuevo botón/indicador visual explícito -->
           <div class="explicit-map-btn">
             <i class="fas fa-location-arrow pulse-icon"></i> ¡Clic aquí para abrir Maps!
           </div>
+        </div>
+        <div class="card glass">
+          <i class="fas fa-shirt icon-green"></i>
+          <h4>Vestimenta</h4>
+          <p data-config="outfit"></p>
+          <div class="explicit-map-btn">
+            Se solicita presentarse con sus mejores superpoderes… o al menos con un buen disfraz. 🦸‍♀️🦸‍♂️
+            Ven vestido como tu superhéroe favorito, villano, antihéroe o personaje que siempre quisiste ser.
+          </div>
+
         </div>
         <div class="card glass" id="gift-card">
           <i class="fas fa-gift icon-cyan"></i>
