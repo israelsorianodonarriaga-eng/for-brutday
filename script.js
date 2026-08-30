@@ -5,8 +5,8 @@
 const CONFIG = {
     name: "Marco Raziel",                   // Nombre del festejado
     version: "30.0",                    // Edad o Versión
-    date: "2026-09-19T20:00:00",        // Fecha del evento (ISO)
-    displayDate: "19 Septiembre 2026",   // Fecha a mostrar en UI
+    date: "2026-09-12T20:00:00",        // Fecha del evento (ISO)
+    displayDate: "12 Septiembre 2026",   // Fecha a mostrar en UI
     time: "16:00 HRS",
     outfit: "Superheroes",
    location: "Santiago Tlacotepec 50255", // Texto de ubicación
