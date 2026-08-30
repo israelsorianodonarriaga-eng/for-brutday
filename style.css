@@ -347,26 +347,41 @@ section {
 }
 
 .map-card {
-    cursor: none;
+    cursor: pointer;
+    position: relative;
 }
 
 .map-card:hover {
     background: rgba(138, 43, 226, 0.1);
     border-color: var(--purple);
+    box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.3), 0 18px 35px rgba(168, 85, 247, 0.2);
 }
 
 .card-action {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     margin-top: 15px;
-    font-size: 0.85rem;
-    color: var(--cyan);
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(34, 211, 238, 0.2), rgba(168, 85, 247, 0.2));
+    border: 1px solid rgba(34, 211, 238, 0.5);
+    box-shadow: 0 0 18px rgba(34, 211, 238, 0.28);
     font-family: var(--font-mono);
-    opacity: 0;
-    transition: opacity 0.3s;
+    opacity: 1;
+    visibility: visible;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.map-card:hover .card-action {
-    opacity: 1;
+.map-card:hover .card-action,
+.map-card:focus-within .card-action {
+    transform: translateY(-1px);
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.38);
+    border-color: rgba(168, 85, 247, 0.7);
 }
 
 /* --- LÍNEA DE TIEMPO --- */

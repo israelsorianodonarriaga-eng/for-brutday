@@ -9,8 +9,8 @@ const CONFIG = {
     displayDate: "19 Septiembre 2026",   // Fecha a mostrar en UI
     time: "16:00 HRS",
     outfit: "Superheroes",
-   location: "Gral. Abelardo Rodríguez 301 Interior D", // Texto de ubicación
-    mapsUrl: "https://maps.app.goo.gl/PwHiCsQFpyymqFBp9",  // Búsqueda para la URL de Maps
+   location: "Santiago Tlacotepec 50255", // Texto de ubicación
+    mapsUrl: "https://maps.app.goo.gl/pn6hBCd7NkNKygUo9",  // Búsqueda para la URL de Maps
     whatsappNum: "527223957638",        // Tu número con código de país (sin +)
     beneficiario: "Marco Raziel Bartolo Medina", // <--- NUEVA LÍNEA AQUÍ
     whatsappMsg: "Hola. Confirmo mi asistencia a la fiesta de Marco. Nos vemos pronto.",
