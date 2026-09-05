@@ -8,7 +8,7 @@ const CONFIG = {
     date: "2026-09-12T20:00:00",        // Fecha del evento (ISO)
     displayDate: "12 Septiembre 2026",   // Fecha a mostrar en UI
     time: "16:00 HRS",
-    outfit: "Superheroes",
+    outfit: "Multiverso de Héroes",
    location: "Santiago Tlacotepec 50255", // Texto de ubicación
     mapsUrl: "https://maps.app.goo.gl/pn6hBCd7NkNKygUo9",  // Búsqueda para la URL de Maps
     whatsappNum: "527223957638",        // Tu número con código de país (sin +)
